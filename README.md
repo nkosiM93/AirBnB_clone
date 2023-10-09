@@ -5,11 +5,8 @@ We are working towards web applicaion similar to the Airbnb website. This projec
 It is a simple framework for writing line-oriented commands. It will be used to manage the objects of our project:
   
    - Create a new object (ex: a new User or a new Place)
-    
    - Retrieve an object from a file, a database etc…
-     
    - Do operations on objects (count, compute stats, etc…)
-   - 
    - Update attributes of an object
    - Destroy an object
 
