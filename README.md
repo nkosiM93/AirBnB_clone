@@ -31,11 +31,10 @@ It is a simple framework for writing line-oriented commands. It will be used to 
 ### Once you have the project set up, you can use the command interpreter by following these steps:
 
   1. Launch the command interpreter by running the following command:
+   ```
+     python3 console.py
+   ```      
 
-    ```
-    python3 console.py
-    ```
-    
   2. You will be presented with a prompt where you can enter various commands to manage AirBnB objects.
   
 
