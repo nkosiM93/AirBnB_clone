@@ -1,4 +1,4 @@
-<u># AirBnB_clone** - **The Console**</u>
+# AirBnB_clone - **The Console**
 We are working towards web applicaion similar to the Airbnb website. This project is the first step in building the AirBnB clone, it will encompass various components like HTML/CSS templating, database storage, API, and front-end integration. The objective of this project is to develop a command interpreter that will manage AirBnB objects. 
 
 ## Description of the Command Interpreter
