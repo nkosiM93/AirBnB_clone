@@ -15,9 +15,8 @@ class BaseModel:
             self.updated_at = datetime.now()
         else:
             self.id = kwargs['id']
-            self.created_at = kwargs['created_at']
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            self.created_at = datetime.strptime(kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            self.updated_at = datetime.strptime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
 
     def __str__(self):
         """String repr of the Base Model Class"""
