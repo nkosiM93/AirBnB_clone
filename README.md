@@ -14,27 +14,32 @@ It is a simple framework for writing line-oriented commands. It will be used to 
 
 ### To start using the AirBnB Clone Command Interpreter, follow these steps:
 
-  1.Clone the repository to your local machine using the following command:
-    ```
-    git clone https://github.com/Odarell35/Airbnb-clone.git
-    ```
-  2.Navigate to the project directory:
-    ```
-    cd Airbnb-clone
-    ```
-  3.Install any necessary dependencies. Make sure you have Python installed on your system.
+1. Clone the repository to your local machine using the following command:
+   ```
+   git clone https://github.com/Odarell35/Airbnb-clone.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd Airbnb-clone
+   ```
+
+3. Install any necessary dependencies. Make sure you have Python installed on your system.
 
 ## How to Use
 
 ### Once you have the project set up, you can use the command interpreter by following these steps:
 
-  1.Launch the command interpreter by running the following command:
+  1. Launch the command interpreter by running the following command:
+
     ```
     python3 console.py
     ```
-  2.You will be presented with a prompt where you can enter various commands to manage AirBnB objects.
+    
+  2. You will be presented with a prompt where you can enter various commands to manage AirBnB objects.
+  
 
-  3.Use commands like create, show, update, destroy, and all to interact with the objects. Refer to the examples section below for more details.
+  3. Use commands like create, show, update, destroy, and all to interact with the objects. Refer to the examples section below for more details.
 
 ## Examples
 
