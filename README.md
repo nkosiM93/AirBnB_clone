@@ -9,6 +9,7 @@ It is a simple framework for writing line-oriented commands. It will be used to 
    - Retrieve an object from a file, a database etc…
      
    - Do operations on objects (count, compute stats, etc…)
+   - 
    - Update attributes of an object
    - Destroy an object
 
