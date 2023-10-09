@@ -1,4 +1,4 @@
-<u>#**AirBnB_clone** - **The Console**</u>
+<u># AirBnB_clone** - **The Console**</u>
 We are working towards web applicaion similar to the Airbnb website. This project is the first step in building the AirBnB clone, it will encompass various components like HTML/CSS templating, database storage, API, and front-end integration. The objective of this project is to develop a command interpreter that will manage AirBnB objects. 
 
 ## Description of the Command Interpreter
@@ -7,13 +7,14 @@ It is a simple framework for writing line-oriented commands. It will be used to 
    - Create a new object (ex: a new User or a new Place)
     
    - Retrieve an object from a file, a database etc…
+     
    - Do operations on objects (count, compute stats, etc…)
    - Update attributes of an object
    - Destroy an object
 
-##How to Start
-<u></u>
-###To start using the AirBnB Clone Command Interpreter, follow these steps:
+## How to Start
+
+### To start using the AirBnB Clone Command Interpreter, follow these steps:
 
   1.Clone the repository to your local machine using the following command:
     ```
@@ -25,9 +26,9 @@ It is a simple framework for writing line-oriented commands. It will be used to 
     ```
   3.Install any necessary dependencies. Make sure you have Python installed on your system.
 
-##How to Use
+## How to Use
 
-###Once you have the project set up, you can use the command interpreter by following these steps:
+### Once you have the project set up, you can use the command interpreter by following these steps:
 
   1.Launch the command interpreter by running the following command:
     ```
