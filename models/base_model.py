@@ -3,6 +3,7 @@
 from uuid import uuid4
 from datetime import datetime
 
+
 class BaseModel:
     """The Base model class"""
 
@@ -20,7 +21,7 @@ class BaseModel:
             else:
                 self.id = str(uuid4())
             if 'created_at' in kwargs:
-                self.created_at = datetime.strptime(kwargs['created_at'], 
+                self.created_at = datetime.strptime(kwargs['created_at'],
                                                     '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 self.created_at = datetime.now()
@@ -41,9 +42,8 @@ class BaseModel:
         self.updated_at = datetime.now()
         storage.save()
 
-
     def to_dict(self):
-        """ 
+        """
             Returns a dictionary containing all
             keys/values of __dict__ of the instance
         """
