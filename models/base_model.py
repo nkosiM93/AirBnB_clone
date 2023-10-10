@@ -14,9 +14,20 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
         else:
-            self.id = kwargs['id']
-            self.created_at = datetime.strptime(kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-            self.updated_at = datetime.strptime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            if 'id' in kwargs:
+                self.id = kwargs['id']
+            else:
+                self.id = str(uuid4())
+            if 'created_at' in kwargs:
+                self.created_at = datetime.strptime(kwargs['created_at'], 
+                                                    '%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                self.created_at = datetime.now()
+            if 'updated_at' in kwargs:
+                self.updated_at = datetime.strptime(kwargs['updated_at'],
+                                                    '%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                self.updated_at = datetime.now()
 
     def __str__(self):
         """String repr of the Base Model Class"""
