@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """File storage module"""
 import json
-#from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -15,7 +14,7 @@ class FileStorage:
         if not dReload or dReload is None:
             pass
         else:
-            for k,v in dReload.items():
+            for k, v in dReload.items():
                 self.__objects[k] = v
         return self.__objects
 
@@ -31,7 +30,7 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects"""
         try:
-            with open (self.__file_path, "r", encoding="utf-8") as r_file:
+            with open(self.__file_path, "r", encoding="utf-8") as r_file:
                 return json.load(r_file)
         except(FileNotFoundError):
             pass
