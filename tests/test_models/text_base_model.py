@@ -14,6 +14,11 @@ class BaseModel_Test(unittest.TestCase):
         a_json = m.to_dict()
         self.assertIsInstance(a_json, dict)
 
+    def test_StorageAll(self):
+        """Tests whether the all() method returns a dictionary"""
+        from models import storage
+        self.assertIsInstance(storage.all(), dict)
+
     def test_Attributes(self):
         """Tests attributes"""
         bm = BaseModel()

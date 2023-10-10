@@ -9,31 +9,29 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def  all(self):
+    def all(self):
         """returns dictionary """
+        dReload = self.reload()
+        if not dReload or dReload is None:
+            pass
+        else:
+            for k,v in dReload.items():
+                self.__objects[k] = v
         return self.__objects
 
     def new(self, obj):
         """sets in objects"""
         k = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[k] = obj
-        print(self.__objects)
+        self.__objects[k] = obj.to_dict()
 
     def save(self):
-        """serializes __objects to the JSON file """
-        save_dict = {}
-        for i, j in self.__objects.items():
-            #save_dict[i] = self.__objects[i].to_dict()
-            save_dict[i] = j.to_dict()
-        with open(self.__file_path, "a", encoding="utf-8") as w_file:
-            json.dump(save_dict, w_file)
+        with open(self.__file_path, "w", encoding="utf-8") as w_file:
+            json.dump(self.__objects, w_file)
 
     def reload(self):
         """deserializes the JSON file to __objects"""
         try:
             with open (self.__file_path, "r", encoding="utf-8") as r_file:
-                for line in r_file:
-                    read = json.load(r_file)
-                    print(read)
-        except(FileNotFoundError, json.JSONDecodeError):
+                return json.load(r_file)
+        except(FileNotFoundError):
             pass
