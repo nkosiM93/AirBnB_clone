@@ -3,16 +3,17 @@
 from uuid import uuid4
 from datetime import datetime
 
-
 class BaseModel:
     """The Base model class"""
 
     def __init__(self, *args, **kwargs):
         """Initialization for the Base Model class"""
+        from models import storage
         if not kwargs or (len(kwargs) == 0):
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
         else:
             if 'id' in kwargs:
                 self.id = kwargs['id']
@@ -34,8 +35,12 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """..."""
+        """saves"""
+
+        from models import storage
         self.updated_at = datetime.now()
+        storage.save()
+
 
     def to_dict(self):
         """ 
