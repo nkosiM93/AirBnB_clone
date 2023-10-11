@@ -43,14 +43,64 @@ class HBNBCommand(cmd.Cmd):
         if cmmd:
             commands = cmmd.split(' ')
             cname = commands[0]
-            if not self.checkClass(cname, None):
+            if len(commands) == 1:
+                if not self.checkClass(cname, None):
+                    return
+                print("** instance id missing **")
                 return
             if len(commands) > 1:
                 oid = commands[1]
-                if not self.checkClass(cname, oid):
-                    return
+                key = f"{commands[0]}.{commands[1]}"
+                avail_id = storage.all()
+                if key in avail_id:
+                    obj = BaseModel(avail_id[key])
+                    print(obj)
+                else:
+                    print("** no instance found **")
         else:
             self.checkClass(cmmd, 0)
+    
+    def do_destroy(self, cmmd):
+        """Prints class name and insatnce id"""
+        if cmmd:
+            commands = cmmd.split(' ')
+            cname = commands[0]
+            if len(commands) == 1:
+                if not self.checkClass(cname, None):
+                    return
+                print("** instance id missing **")
+                return
+            if len(commands) > 1:
+                oid = commands[1]
+                key = f"{commands[0]}.{commands[1]}"
+                avail_id = storage.all()
+                if key in avail_id:
+                    del avail_id[key]
+                    storage.save()
+                else:
+                    print("** no instance found **")
+        else:
+            self.checkClass(cmmd, 0)
+
+    def do_all(self, cmmd):
+        """ Prints all string representation of all instances"""
+        new_list = []
+        obj_list = storage.all()
+        if not cmmd:
+            for inst in obj_list.keys():
+                obj = BaseModel(inst)
+                new_list.append(str(obj))
+            print(new_list)
+        else:
+            commands = cmmd.split(' ')
+            cname = commands[0]
+            if not checkClass(cname, 0):
+                return
+            for i in obj_list.values():
+                if cname in i.values():
+                    obj = BaseModel(i)
+                    new_list.append(str(obj))
+            print(new_list)
 
     def do_quit(self, line):
         """Exit the program"""
