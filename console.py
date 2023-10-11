@@ -31,7 +31,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, cmmd):
         """Creates a new instance of BaseModel"""
-        oid = 0
         if not self.checkClass(cmmd, 0):
             pass
         else:
@@ -39,13 +38,19 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
             print(f"{bm.id}")
 
-    def do_show(self, cname, oid):
+    def do_show(self, cmmd):
         """Prints class name and insatnce id"""
-        if not self.checkClass(cname, oid):
-            pass
+        if cmmd:
+            commands = cmmd.split(' ')
+            cname = commands[0]
+            if not self.checkClass(cname, None):
+                return
+            if len(commands) > 1:
+                oid = commands[1]
+                if not self.checkClass(cname, oid):
+                    return
         else:
-
-
+            self.checkClass(cmmd, 0)
 
     def do_quit(self, line):
         """Exit the program"""
