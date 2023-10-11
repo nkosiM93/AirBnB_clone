@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """When empty line is passed or  ENTER is pressed
-        nothing should be  executed anything"""
+        nothing should be  executed"""
         pass
 
 
