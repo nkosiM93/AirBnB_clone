@@ -53,8 +53,9 @@ class HBNBCommand(cmd.Cmd):
                 key = f"{commands[0]}.{commands[1]}"
                 avail_id = storage.all()
                 if key in avail_id:
-                    obj = BaseModel(avail_id[key])
-                    print(obj)
+                    #when the key is found in storage, use that to print object
+                    instance = avail_id[key]
+                    print(instance)
                 else:
                     print("** no instance found **")
         else:
@@ -88,17 +89,22 @@ class HBNBCommand(cmd.Cmd):
         obj_list = storage.all()
         if not cmmd:
             for inst in obj_list.keys():
-                obj = BaseModel(inst)
+                obj = obj_list[inst]
                 new_list.append(str(obj))
             print(new_list)
         else:
             commands = cmmd.split(' ')
             cname = commands[0]
-            if not checkClass(cname, 0):
+            if not self.checkClass(cname, 0):
                 return
-            for i in obj_list.values():
-                if cname in i.values():
-                    obj = BaseModel(i)
+            for i in obj_list.keys():
+                print(i)
+                #so lana I extracted keys found in storage.all()
+                #then split them becase its class.id
+                #then check if cnmae matches with class in key
+                c = i.split(".")
+                if cname == c[0]:
+                    obj = obj_list[i]
                     new_list.append(str(obj))
             print(new_list)
 
