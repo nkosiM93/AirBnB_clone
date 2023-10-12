@@ -4,28 +4,42 @@ import cmd
 import importlib
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
 
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter"""
     prompt = "(hbnb) "
 
+    __classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review,
+        "Place": Place
+    }
+
     def checkClass(self, cmmd, oid):
         """Method that checks class-name existence and class existence"""
-
-        mod = importlib.import_module("models.base_model")
 
         if not cmmd:
             print("** class name missing **")
             return False
-        elif not hasattr(mod, cmmd):
+        elif cmmd not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return False
         elif not oid:
             print("** instance id missing **")
             return False
-        elif oid == 0:
-            return True
+        #elif oid == 0:
+            #return True
         else:
             return True
 
@@ -37,9 +51,9 @@ class HBNBCommand(cmd.Cmd):
             if not self.checkClass(commands[0], 1):
                     return
             else:
-                bm = BaseModel()
+                newInst = HBNBCommand.__classes[cmmd]()
                 storage.save()
-                print(f"{bm.id}")
+                print(f"{newInst.id}")
         else:
             print("** class name missing **")
 
@@ -51,8 +65,6 @@ class HBNBCommand(cmd.Cmd):
             if len(commands) == 1:
                 if not self.checkClass(cname, None):
                     return
-                print("** instance id missing **")
-                return
             if len(commands) > 1:
                 oid = commands[1]
                 key = f"{commands[0]}.{commands[1]}"
@@ -67,7 +79,32 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, cmmd):
         """Updates an object"""
+        if cmmd:
+            commands = cmmd.split(' ')
+            cname = commands[0]
+            if len(commands) == 1:
+                if not self.checkClass(cname, None):
+                    return
+            if len(commands) > 1:
+                oid = commands[1]
+                key = f"{commands[0]}.{commands[1]}"
+                avail_id = storage.all()
+                if key in avail_id:
+                    instance = avail_id[key]
+                    if len(commands) < 3:
+                        print("attribute name missing")
+                        return
+                    elif len(commands) < 4:
+                        print("** value missing **")
+                        return
+                    else:
+                        setattr(instance, commands[2], commands[3])
 
+                    storage.save()
+                else:
+                    print("** no instance found **")
+        else:
+            print("** class name missing **")
     
     def do_destroy(self, cmmd):
         """Prints class name and insatnce id"""
@@ -103,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             commands = cmmd.split(' ')
             cname = commands[0]
-            if not self.checkClass(cname, 0):
+            if not self.checkClass(cname, 1):
                 return
             for i in obj_list.keys():
                 c = i.split(".")
