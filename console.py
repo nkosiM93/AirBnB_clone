@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         setattr(instance, commands[2], commands[3])
 
-                    storage.save()
+                    instance.save()
                 else:
                     print("** no instance found **")
         else:
