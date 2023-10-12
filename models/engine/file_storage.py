@@ -2,6 +2,13 @@
 """File storage module"""
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
+from models.city import City
+
 
 class FileStorage:
     """class representation"""
@@ -31,8 +38,7 @@ class FileStorage:
                 __tempD = json.load(r_file)
                 self.__objects.clear() # just to make sure it's empty
                 for k, v in __tempD.items():
-                    #we are storing instances back in __objects, passing values obtained as kwargs because their in a dictionary format
-                    #v is the dictionary representing the object's attributes.
-                    self.__objects[k] = BaseModel(**v)
+                    clas_name = k.split(".")
+                    self.__objects[k] = clas_name[0](**v)
         except(FileNotFoundError):
             pass
