@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """This module contains the test cases for the Base Model Class"""
 import unittest
 from models.base_model import BaseModel
@@ -13,6 +13,7 @@ class BaseModel_Test(unittest.TestCase):
         m = BaseModel()
         a_json = m.to_dict()
         self.assertIsInstance(a_json, dict)
+        self.assertEqual(a_json['__class__'], 'BaseModel')
 
     def test_StorageAll(self):
         """Tests whether the all() method returns a dictionary"""
@@ -34,3 +35,9 @@ class BaseModel_Test(unittest.TestCase):
         self.assertEqual(m.id, g.id)
         self.assertIs(type(m.created_at), datetime)
         self.assertIs(type(m.updated_at), datetime)
+
+    def test_id_unique(self):
+        """Test unique id"""
+        base_model1 = BaseModel()
+        base_model2 = BaseModel()
+        self.assertNotEqual(base_model1.id, base_model2.id)
