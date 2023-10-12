@@ -98,10 +98,6 @@ class HBNBCommand(cmd.Cmd):
             if not self.checkClass(cname, 0):
                 return
             for i in obj_list.keys():
-                print(i)
-                #so lana I extracted keys found in storage.all()
-                #then split them becase its class.id
-                #then check if cnmae matches with class in key
                 c = i.split(".")
                 if cname == c[0]:
                     obj = obj_list[i]

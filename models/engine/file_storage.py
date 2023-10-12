@@ -29,6 +29,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r", encoding="utf-8") as r_file:
                 __tempD = json.load(r_file)
+                self.__objects.clear() # just to make sure it's empty
                 for k, v in __tempD.items():
                     #we are storing instances back in __objects, passing values obtained as kwargs because their in a dictionary format
                     #v is the dictionary representing the object's attributes.
