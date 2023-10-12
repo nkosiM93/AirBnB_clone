@@ -21,22 +21,27 @@ class HBNBCommand(cmd.Cmd):
         elif not hasattr(mod, cmmd):
             print("** class doesn't exist **")
             return False
-        elif oid == 0:
-            return True
         elif not oid:
             print("** instance id missing **")
             return False
+        elif oid == 0:
+            return True
         else:
             return True
 
     def do_create(self, cmmd):
         """Creates a new instance of BaseModel"""
-        if not self.checkClass(cmmd, 0):
-            pass
+        if cmmd:
+            commands = cmmd.split(' ')
+            # Used 1 as an oid to by-pass instance id check in checkClass()
+            if not self.checkClass(commands[0], 1):
+                    return
+            else:
+                bm = BaseModel()
+                storage.save()
+                print(f"{bm.id}")
         else:
-            bm = BaseModel()
-            storage.save()
-            print(f"{bm.id}")
+            print("** class name missing **")
 
     def do_show(self, cmmd):
         """Prints class name and insatnce id"""
@@ -53,13 +58,16 @@ class HBNBCommand(cmd.Cmd):
                 key = f"{commands[0]}.{commands[1]}"
                 avail_id = storage.all()
                 if key in avail_id:
-                    #when the key is found in storage, use that to print object
                     instance = avail_id[key]
                     print(instance)
                 else:
                     print("** no instance found **")
         else:
-            self.checkClass(cmmd, 0)
+            print("** class name missing **")
+
+    def do_update(self, cmmd):
+        """Updates an object"""
+
     
     def do_destroy(self, cmmd):
         """Prints class name and insatnce id"""
