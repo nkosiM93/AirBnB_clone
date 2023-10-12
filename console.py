@@ -46,9 +46,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, cmmd):
         """Creates a new instance of BaseModel"""
         if cmmd:
-            commands = cmmd.split(' ')
-            # Used 1 as an oid to by-pass instance id check in checkClass()
-            if not self.checkClass(commands[0], 1):
+            if not self.checkClass(cmmd, 1):
                     return
             else:
                 newInst = HBNBCommand.__classes[cmmd]()
