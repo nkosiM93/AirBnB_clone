@@ -38,8 +38,6 @@ class HBNBCommand(cmd.Cmd):
         elif not oid:
             print("** instance id missing **")
             return False
-        #elif oid == 0:
-            #return True
         else:
             return True
 
@@ -47,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel"""
         if cmmd:
             if not self.checkClass(cmmd, 1):
-                    return
+                return
             else:
                 newInst = HBNBCommand.__classes[cmmd]()
                 storage.save()
@@ -103,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
         else:
             print("** class name missing **")
-    
+
     def do_destroy(self, cmmd):
         """Prints class name and insatnce id"""
         if cmmd:
@@ -151,15 +149,9 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Defines default behavior"""
         import re
-
-
-        __methods = {
-                        "all": self.do_all,
-                        "show": self.do_show,
-                        "create": self.do_create,
-                        "destroy": self.do_destroy,
-                        "update": self.do_update
-                    }
+        __methods = {"all": self.do_all,
+                     "show": self.do_show, "create": self.do_create,
+                     "destroy": self.do_destroy, "update": self.do_update}
 
         delims = r"[.()]"
         splits = re.split(delims, line)

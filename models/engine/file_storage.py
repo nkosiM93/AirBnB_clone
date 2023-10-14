@@ -32,7 +32,7 @@ class FileStorage:
 
     def save(self):
         __tempD = {}
-        for k,v in self.__objects.items():
+        for k, v in self.__objects.items():
             __tempD[k] = v.to_dict()
         with open(self.__file_path, "w", encoding="utf-8") as w_file:
             json.dump(__tempD, w_file)
@@ -42,7 +42,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r", encoding="utf-8") as r_file:
                 __tempD = json.load(r_file)
-                self.__objects.clear() # just to make sure it's empty
+                self.__objects.clear()
                 for k, v in __tempD.items():
                     self.__objects[k] = FileStorage.classes[v['__class__']](**v)
         except(FileNotFoundError):
