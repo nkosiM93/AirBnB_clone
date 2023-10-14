@@ -61,5 +61,6 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(type(place.longitude) == float)
         self.assertTrue(type(place.amenity_ids) == list)
 
+
 if __name__ == "__main__":
     unittest.main()

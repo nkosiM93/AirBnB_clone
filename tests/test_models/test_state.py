@@ -21,6 +21,7 @@ class TestState(unittest.TestCase):
         state = State()
         self.assertTrue(hasattr(state, "name"))
         self.assertEqual(state.name, "")
+
     def test_type(self):
         """test for value type"""
         state = State()

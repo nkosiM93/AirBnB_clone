@@ -19,7 +19,7 @@ class TestCity(unittest.TestCase):
         self.assertTrue(hasattr(ci, 'state_id'))
 
     def test_defaults(self):
-        self.assertEqual(City.state_id, "") 
+        self.assertEqual(City.state_id, "")
         self.assertEqual(City.name, "")
 
     def test_types(self):
