@@ -147,6 +147,27 @@ class HBNBCommand(cmd.Cmd):
                     new_list.append(str(obj))
             print(new_list)
 
+
+    def default(self, line):
+        """Defines default behavior"""
+        import re
+
+
+        __methods = {
+                        "all": self.do_all,
+                        "show": self.do_show,
+                        "create": self.do_create,
+                        "destroy": self.do_destroy,
+                        "update": self.do_update
+                    }
+
+        delims = r"[.()]"
+        splits = re.split(delims, line)
+        if splits[1] in __methods.keys():
+            __methods[splits[1]](splits[0])
+            return
+        print("*** Unknown syntax: {line}")
+
     def do_quit(self, line):
         """Exit the program"""
         return True
