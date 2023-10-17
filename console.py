@@ -158,15 +158,34 @@ class HBNBCommand(cmd.Cmd):
                         "show": self.do_show,
                         "create": self.do_create,
                         "destroy": self.do_destroy,
-                        "update": self.do_update
+                        "update": self.do_update,
+                        "count":self.do_count
                     }
 
-        delims = r"[.()]"
+        delims = r"[.()\"]+"
         splits = re.split(delims, line)
         if splits[1] in __methods.keys():
-            __methods[splits[1]](splits[0])
+            if not  splits[1] == "show":
+                __methods[splits[1]](splits[0])
+            else:
+                __methods[splits[1]](" ".join([splits[0], splits[2]]))
             return
         print("*** Unknown syntax: {line}")
+
+    def do_count(self, cmmd):
+        """Counts the number of instances created for a certain class"""
+
+        obj_list = storage.all()
+        commands = cmmd.split(' ')
+        cname = commands[0]
+        if not self.checkClass(cname, 1):
+            return
+        count = 0
+        for i in obj_list.keys():
+            c = i.split(".")
+            if cname == c[0]:
+                count += 1
+        print(count)
 
     def do_quit(self, line):
         """Exit the program"""
