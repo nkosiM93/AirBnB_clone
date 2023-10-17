@@ -15,7 +15,7 @@ class TestReview(unittest.TestCase):
         self.assertTrue(hasattr(r, 'id'))
         self.assertTrue(hasattr(r, 'created_at'))
         self.assertTrue(hasattr(r, 'updated_at'))
-        self.assertTrue(hasattr(r, 'place_id')) 
+        self.assertTrue(hasattr(r, 'place_id'))
         self.assertTrue(hasattr(r, 'user_id'))
         self.assertTrue(hasattr(r, 'text'))
 
