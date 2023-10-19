@@ -38,6 +38,8 @@ class HBNBCommand(cmd.Cmd):
         elif not oid:
             print("** instance id missing **")
             return False
+        #elif oid == 0:
+            #return True
         else:
             return True
 
@@ -45,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel"""
         if cmmd:
             if not self.checkClass(cmmd, 1):
-                return
+                    return
             else:
                 newInst = HBNBCommand.__classes[cmmd]()
                 storage.save()
@@ -101,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
         else:
             print("** class name missing **")
-
+    
     def do_destroy(self, cmmd):
         """Prints class name and insatnce id"""
         if cmmd:
@@ -149,16 +151,41 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Defines default behavior"""
         import re
-        __methods = {"all": self.do_all,
-                     "show": self.do_show, "create": self.do_create,
-                     "destroy": self.do_destroy, "update": self.do_update}
 
-        delims = r"[.()]"
+
+        __methods = {
+                        "all": self.do_all,
+                        "show": self.do_show,
+                        "create": self.do_create,
+                        "destroy": self.do_destroy,
+                        "update": self.do_update,
+                        "count":self.do_count
+                    }
+
+        delims = r"[.()\"]+"
         splits = re.split(delims, line)
         if splits[1] in __methods.keys():
-            __methods[splits[1]](splits[0])
+            if not  splits[1] == "show":
+                __methods[splits[1]](splits[0])
+            else:
+                __methods[splits[1]](" ".join([splits[0], splits[2]]))
             return
         print("*** Unknown syntax: {line}")
+
+    def do_count(self, cmmd):
+        """Counts the number of instances created for a certain class"""
+
+        obj_list = storage.all()
+        commands = cmmd.split(' ')
+        cname = commands[0]
+        if not self.checkClass(cname, 1):
+            return
+        count = 0
+        for i in obj_list.keys():
+            c = i.split(".")
+            if cname == c[0]:
+                count += 1
+        print(count)
 
     def do_quit(self, line):
         """Exit the program"""
