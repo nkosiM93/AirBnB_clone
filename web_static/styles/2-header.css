@@ -1,0 +1,7 @@
+/*Styles the header of the page*/
+
+header {
+	height: 70px;
+	width: 100%;
+	background-color:red;
+}
