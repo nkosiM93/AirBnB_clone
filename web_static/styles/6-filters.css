@@ -104,3 +104,7 @@ section.filters button {
 section.filters button:hover {
 	opacity:0.9;
 }
+
+.amenities .popower {
+	padding-top:20px;
+}
